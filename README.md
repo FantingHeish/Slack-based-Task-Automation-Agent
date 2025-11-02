@@ -24,13 +24,25 @@
 ## 系統架構圖
 ```mermaid
 flowchart TD
-    A[使用者輸入問題] --> B[Query Router]
-    B --> C["Retriever (Vectorstore / Web)"]
-    C --> D[Retrieval Grader]
-    D --> E[Pointwise & Pairwise Reranker]
-    E --> F[LLM Responder]
-    F --> G[Hallucination / Answer Grader]
-    G --> H[最終回覆輸出]
+    A[使用者輸入問題 / Query] --> B[Query Router]
+    B -->|語意分析| C[Vectorstore 檢索]
+    B -->|外部資料需求| D[Web Search]
+    B -->|一般問答| E[Plain LLM Answer]
+
+    C --> F[Retrieval Grader]
+    D --> F
+    F --> G[Route Retrieval Decision]
+
+    G -->|文件非空| H[RAG Responder]
+    G -->|文件為空| E
+
+    H --> I[Hallucination Grader]
+    I -->|No 錯誤| J[Answer Grader]
+    I -->|Yes 錯誤| H
+
+    J -->|答案可靠| K[最終回覆 / Final Answer]
+    J -->|答案不可靠| H
+
 ```
 
 ### 專案檔案說明
