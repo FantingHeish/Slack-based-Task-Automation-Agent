@@ -24,14 +24,18 @@
 ---
 
 ## 系統架構圖
-
-```mermaid
 flowchart TD
     A[使用者輸入問題] --> B[Query Router]
-    B --> C[Retriever (Vectorstore / Web)]
+    B --> C["Retriever (Vectorstore / Web)"]
     C --> D[Retrieval Grader]
     D --> E[Pointwise & Pairwise Reranker]
     E --> F[LLM Responder]
     F --> G[Hallucination / Answer Grader]
     G --> H[最終回覆輸出]
-```
+
+
+### 專案檔案說明
+- `Semiconductor_Anomaly_Detection.ipynb`：主要模型訓練與分析流程  
+- `requirements.txt`：環境套件清單  
+- `model_results.png`：結果視覺化圖表  
+
