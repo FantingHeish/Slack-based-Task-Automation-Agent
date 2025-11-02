@@ -1,4 +1,4 @@
-# RAG-Knowledge-Retrieval-Agent（文件檢索式問答系統）
+# RAG-Knowledge-Retrieval-Agent
 
 以 **Retrieval-Augmented Generation（RAG）** 架構建立的智慧問答系統，  
 整合文件語意檢索與大型語言模型（LLM），能根據使用者問題自動查找知識內容並生成精確答案。  
@@ -24,28 +24,27 @@
 ## 系統架構圖
 ```mermaid
 flowchart TD
-    A[User Query] --> B[Query Router]
+  A[User Query] --> B[Query Router]
 
-    B --> C[Vectorstore Retrieval]
-    B --> D[Web Search]
-    B --> E[Plain Answer]
+  B --> C[Vectorstore Retrieval]
+  B --> D[Web Search]
+  B --> E[Plain Answer]
 
-    C --> F[Retrieval Grader]
-    D --> F
+  C --> F[Retrieval Grader]
+  D --> F
 
-    F --> G{Docs available?}
-    G -->|Yes| H[RAG Responder]
-    G -->|No|  E
+  F --> G{Docs available?}
+  G -->|Yes| H[RAG Responder]
+  G -->|No|  E
 
-    H --> I[Hallucination Grader]
-    I -->|Hallucination| H
-    I -->|Clean| J[Answer Grader]
+  H --> I[Hallucination Grader]
+  I -->|Hallucination| H
+  I -->|Clean| J[Answer Grader]
 
-    E --> J
+  E --> J
 
-    J -->|Pass| K[Final Answer]
-    J -->|Revise| H
-
+  J -->|Pass| K[Final Answer]
+  J -->|Revise| H
 ```
 
 ### 專案檔案說明
