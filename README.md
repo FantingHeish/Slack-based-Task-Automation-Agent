@@ -16,11 +16,8 @@
 ---
 
 ## 🧩 系統架構圖
-
-```mermaid
-flowchart TD
-    A[Slack Channels & DMs] --> B[Slack API]
-    B --> C[LLM 任務分類器 (Prompt-driven Retrieval)]
-    C --> D[Google Sheets API]
+    1. [Slack Channels & DMs] --> B[Slack API]
+    2. C[LLM 任務分類器 (Prompt-driven Retrieval)]
+    3. D[Google Sheets API]
     D --> E[比對與報告生成 (JSON → Markdown)]
     E --> F[回傳至 Slack]
