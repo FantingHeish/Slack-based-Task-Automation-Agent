@@ -26,26 +26,21 @@
 flowchart TD
     A[使用者輸入問題 / Query] --> B[Query Router]
 
-    %% Routing 分流
     B -->|語意分析| C[Vectorstore 檢索]
     B -->|外部資料需求| D[Web Search]
     B -->|一般問答| E[Plain LLM Answer]
 
-    %% 檢索與評估
     C --> F[Retrieval Grader]
     D --> F
     F --> G[Route Retrieval Decision]
 
-    %% RAG 啟動或簡答路徑
     G -->|文件非空| H[RAG Responder]
     G -->|文件為空| E
 
-    %% 自省迴圈
     H --> I[Hallucination Grader]
     I -->|Yes (檢測到錯誤)| H
     I -->|No (通過)| J[Answer Grader]
 
-    %% 最終驗證與輸出
     E --> J
     J -->|答案可靠| K[最終回覆 / Final Answer]
     J -->|答案不可靠| H
