@@ -22,6 +22,7 @@
 | **部署方式** | Streamlit / Gradio Web 介面 |
 
 ## 系統架構圖
+```mermaid
 flowchart TD
     A[使用者輸入問題] --> B[Query Router]
     B --> C["Retriever (Vectorstore / Web)"]
@@ -30,7 +31,7 @@ flowchart TD
     E --> F[LLM Responder]
     F --> G[Hallucination / Answer Grader]
     G --> H[最終回覆輸出]
-
+```
 
 ### 專案檔案說明
 - `config.py`： 儲存系統設定與環境變數管理
