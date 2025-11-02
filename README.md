@@ -7,6 +7,15 @@
 3. 將結果與 Google Sheets 任務清單比對，分類為「已登錄任務」與「未登錄任務」。  
 4. 以 Markdown 表格格式回傳至使用者的 Slack 私訊，並可自動上傳 `.txt` 報告檔。
 
+## 技術架構
+| 類別         | 技術 / 套件                                           | 功能描述            |
+| ---------- | ------------------------------------------------- | --------------- |
+| **Backend** |  Python 3.10+, Slack SDK, Google Sheets API        | 抓取訊息、任務比對       |
+| **LLM 模型** |  OpenAI GPT / HuggingFace Mistral-7B / ChatGLM3-6B | 自然語言理解與比對任務     |
+| Interface  | Gradio                                            | 前端 Web 介面，一鍵執行  |
+| Output     | Slack Bot + `.txt` file                           | 自動上傳整理結果至 Slack |
+| Deployment | Hugging Face Space                                | 提供固定網址、雲端執行環境   |
+
 
 ## 架構圖
 ```mermaid
