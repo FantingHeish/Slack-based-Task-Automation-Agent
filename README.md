@@ -21,8 +21,6 @@
 | **功能模組** | Query Router、Retrieval Grader、Pointwise & Pairwise Rerank、Hallucination & Answer Grader |
 | **部署方式** | Streamlit / Gradio Web 介面 |
 
----
-
 ## 系統架構圖
 flowchart TD
     A[使用者輸入問題] --> B[Query Router]
@@ -35,7 +33,10 @@ flowchart TD
 
 
 ### 專案檔案說明
-- `Semiconductor_Anomaly_Detection.ipynb`：主要模型訓練與分析流程  
-- `requirements.txt`：環境套件清單  
-- `model_results.png`：結果視覺化圖表  
+- `config.py`： 儲存系統設定與環境變數管理
+- `llm_utils.py`： 整合 LLM 模型介面，支援 OpenAI GPT-4 與 Hugging Face 模型呼叫
+- `slack_utils.py`： 負責與 Slack API 溝通，包括訊息擷取、分段上傳與檔案傳送
+- `task_pipeline.py`： 核心流程模組：將 Slack 訊息比對 Google Sheet 任務清單並生成報告
+- `ui.py`： 建立 Gradio Web 介面，讓使用者可上傳 Slack JSON、選擇模型並一鍵執行
+- `slack_agent.py`： 主執行入口，串接 UI 與 pipeline，整合 LLM 模組與 Slack 回傳
 
