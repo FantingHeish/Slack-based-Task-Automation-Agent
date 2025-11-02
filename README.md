@@ -14,7 +14,6 @@
 
 | 模組 | 技術 |
 |------|------|
-| **主要語言** | Python 3.10+ |
 | **開發框架** | LangChain、ChromaDB、OpenAI / HuggingFace Transformers |
 | **核心流程** | Chunking → Embedding → Retrieval → Reranking → LLM Response |
 | **模型支援** | OpenAI GPT-4、ChatGLM3-6B、Mistral-7B-Instruct |
@@ -35,4 +34,4 @@ flowchart TD
     E --> F[LLM Responder]
     F --> G[Hallucination / Answer Grader]
     G --> H[最終回覆輸出]
-
+```
