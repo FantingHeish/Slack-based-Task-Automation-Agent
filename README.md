@@ -20,14 +20,21 @@
 ## 架構圖
 ```mermaid
 flowchart TD
-    A[User triggers Gradio UI] --> B[Slack Agent]
-    B --> C[Fetch messages from channels & DMs]
-    C --> D[LLM Message Analyzer]
-    D --> E[Google Sheet Task Fetcher]
-    E --> F[Task Comparator (Match / Unmatched)]
-    F --> G[Formatter & Markdown Report]
-    G --> H[Slack Bot Sender]
-    H --> I[User receives summarized task report]
+    A[Gradio UI] --> B[Slack Agent]
+    B --> C[Fetch messages]
+    C --> D[To JSON]
+    D --> E[LLM Classifier]
+    B --> S[Load Sheet tasks]
+
+    E --> F{Sheet ok?}
+    F -- Yes --> G[Task Matcher<br/>(existing vs new)]
+    F -- No --> R[Report Builder<br/>(unmatched only)]
+
+    G --> H[Update existing<br/>or mark new]
+    H --> R[Report Builder]
+
+    R --> U[Slack Sender]
+    U --> V[User receives report]
  ```
 
 ### 檔案說明
