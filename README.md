@@ -1,54 +1,27 @@
-# RAG-Knowledge-Retrieval-Agent
-
-以 **Retrieval-Augmented Generation（RAG）** 架構建立的智慧問答系統，  
-整合文件語意檢索與大型語言模型（LLM），能根據使用者問題自動查找知識內容並生成精確答案。  
-應用於企業內部知識查詢、金融報告摘要、自動客服問答等情境。
-
+# Slack-based-Task-Automation-Agent
 ## 專案簡介
-本專案採用 **LangChain + Hugging Face Transformers + ChromaDB** 架構，  
-建立一個可擴充的文件檢索式問答流程，結合語意嵌入、重排序、回覆生成與可靠性評估。  
-系統能針對長文件進行內容擷取與語意比對，並藉由 reranking 與 hallucination 檢測提升回答精確度。  
+此專案是一個整合 **Slack、Google Sheets、與大型語言模型（LLM）** 的自動化任務整理系統。  
+使用者可從 Gradio 介面一鍵執行，Agent 會：
+1. 抓取指定 Slack Workspace 的訊息（含頻道與私訊）。  
+2. 自動分析訊息內容、發送者、截止日期、負責人。  
+3. 將結果與 Google Sheets 任務清單比對，分類為「已登錄任務」與「未登錄任務」。  
+4. 以 Markdown 表格格式回傳至使用者的 Slack 私訊，並可自動上傳 `.txt` 報告檔。
 
 
-## 技術架構
-
-| 模組 | 技術 |
-|------|------|
-| **開發框架** | LangChain、ChromaDB、OpenAI / HuggingFace Transformers |
-| **核心流程** | Chunking → Embedding → Retrieval → Reranking → LLM Response |
-| **模型支援** | OpenAI GPT-4、ChatGLM3-6B、Mistral-7B-Instruct |
-| **資料庫** | 向量資料庫（ChromaDB） |
-| **功能模組** | Query Router、Retrieval Grader、Pointwise & Pairwise Rerank、Hallucination & Answer Grader |
-| **部署方式** | Streamlit / Gradio Web 介面 |
-
-## 系統架構圖
+## 架構圖
 ```mermaid
 flowchart TD
-    A[User Query] --> B[Query Router]
+    A[User triggers Gradio UI] --> B[Slack Agent]
+    B --> C[Fetch messages from channels & DMs]
+    C --> D[LLM Message Analyzer]
+    D --> E[Google Sheet Task Fetcher]
+    E --> F[Task Comparator (Match / Unmatched)]
+    F --> G[Formatter & Markdown Report]
+    G --> H[Slack Bot Sender]
+    H --> I[User receives summarized task report]
+ ```
 
-    B --> C[Vectorstore Retrieval]
-    B --> D[Web Search]
-    B --> E[Plain Answer]
-
-    C --> F[Retrieval Grader]
-    D --> F
-
-    F --> G{Docs available?}
-    G -->|Yes| H[RAG Responder]
-    G -->|No| E
-
-    H --> I[Hallucination Grader]
-    I -->|Hallucination| H
-    I -->|Clean| J[Answer Grader]
-
-    E --> J
-
-    J -->|Pass| K[Final Answer]
-    J -->|Revise| H
-
-```
-
-### 專案檔案說明
+### 檔案說明
 - `config.py`： 儲存系統設定與環境變數管理
 - `llm_utils.py`： 整合 LLM 模型介面，支援 OpenAI GPT-4 與 Hugging Face 模型呼叫
 - `slack_utils.py`： 負責與 Slack API 溝通，包括訊息擷取、分段上傳與檔案傳送
