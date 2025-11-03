@@ -18,33 +18,6 @@
 
 
 ## 架構圖
-```mermaid
-flowchart TD
-    A["Gradio UI"] --> B["Slack Agent"]
-
-    %% Slack 處理路徑
-    B --> C["Fetch Slack messages"]
-    C --> D["Preprocess to JSON"]
-    D --> E["LLM Task Classifier"]
-
-    %% Google Sheet 並行路徑
-    B --> S["Load Google Sheet tasks"]
-
-    %% 匯流點
-    E --> F{"Sheet available?"}
-    S --> F
-
-    %% Decision 分支
-    F -- Yes --> G["Task Matcher: existing vs new"]
-    F -- No --> R["Report Builder: unmatched only"]
-
-    %% 後續流程
-    G --> H["Update or mark new"]
-    H --> R["Report Builder"]
-    R --> U["Slack Sender"]
-    U --> V["User receives report"]
-
- ```
 <img width="1913" height="991" alt="Gradio UI" src="https://github.com/user-attachments/assets/761e5110-acb1-433b-8960-d977325fe8b2" />
 
 ### 檔案說明
