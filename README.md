@@ -1,6 +1,6 @@
 # Slack-based-Task-Automation-Agent
 ## 專案簡介
-此專案是一個整合 **Slack、Google Sheets、與大型語言模型（LLM）** 的自動化任務整理系統。  
+此專案是一個整合 **Slack、Google Cloud Sheets、與大型語言模型（LLM）** 的自動化任務整理系統。  
 使用者可從 Gradio 介面一鍵執行，Agent 會：
 1. 抓取指定 Slack Workspace 的訊息。  
 2. 分析並整理訊息內容、發送者、截止日期、負責人。  
