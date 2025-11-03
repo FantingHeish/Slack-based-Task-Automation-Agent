@@ -21,8 +21,6 @@
 
 ![Gradio UI](https://github.com/user-attachments/assets/761e5110-acb1-433b-8960-d977325fe8b2)
 
-<img width="1913" height="991" alt="Gradio UI" src="https://github.com/user-attachments/assets/761e5110-acb1-433b-8960-d977325fe8b2" />
-
 ### 檔案說明
 - `config.py`： 儲存系統設定與環境變數管理
 - `llm_utils.py`： 整合 LLM 模型介面，支援 OpenAI GPT-4 與 Hugging Face 模型呼叫
