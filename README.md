@@ -1,4 +1,3 @@
-<img width="1913" height="991" alt="Gradio UI" src="https://github.com/user-attachments/assets/74d99b74-169b-4eaf-9afd-1afacb49900c" /># Slack-based-Task-Automation-Agent
 ## 專案簡介
 此專案是一個整合 **Slack、Google Cloud Sheets、與大型語言模型（LLM）** 的自動化任務整理系統。  
 使用者可從 Gradio 介面一鍵執行，Agent 會：
