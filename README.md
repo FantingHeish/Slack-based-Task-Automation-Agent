@@ -4,9 +4,8 @@
 使用者可從 Gradio 介面一鍵執行，Agent 會：
 1. 抓取指定 Slack Workspace 的訊息。  
 2. 分析並整理訊息內容、發送者、截止日期、負責人。  
-3. 比對Google cloud sheet任務清單。
-4. 整理任務清單。
-5. 回傳至使用者 Slack 私訊，並寄送郵件，另外可以附加任務sheet檔案。
+3. 比對Google cloud sheet任務，整理生成任務清單。
+5. 回傳至使用者 Slack 私訊，並寄送郵件，另外可以附加任務sheet。
 
 ## 技術架構
 | 類別         | 技術 / 套件                                           | 功能描述            |
