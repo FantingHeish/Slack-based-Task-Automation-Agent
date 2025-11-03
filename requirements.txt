@@ -1,0 +1,11 @@
+gradio
+slack_sdk>=3.21.0
+gspread
+oauth2client
+openai>=1.0.0
+python-dotenv
+pandas
+google-api-python-client
+google-auth
+requests>=2.25.1
+google-auth-oauthlib
